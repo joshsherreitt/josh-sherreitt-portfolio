@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josh Sherreitt, Mechanical Engineer</title>
+<meta name="description" content="Josh Sherreitt, Mechanical Engineer, UAS & defense systems. Cal Poly SLO '25.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #0E2233;
+    --navy-deep: #0A1A28;
+    --paper: #F2EFE6;
+    --paper-dim: #E6E1D2;
+    --ink: #16202B;
+    --line-blue: #6FA8D4;
+    --line-blue-dim: #3E6C8F;
+    --hazard: #C8102E;
+    --hazard-dim: #8F0C21;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a{ color: inherit; }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--hazard);
+    outline-offset: 3px;
+  }
+
+  .sheet{
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    border-left: 1px solid var(--line-blue-dim);
+    border-right: 1px solid var(--line-blue-dim);
+  }
+
+  /* corner brackets, like a drawing-sheet frame */
+  .corner{
+    position: absolute;
+    width: 22px; height: 22px;
+    border: 2px solid var(--line-blue-dim);
+    opacity: 0.6;
+  }
+  .corner.tl{ top: 14px; left: 14px; border-right:none; border-bottom:none; }
+  .corner.tr{ top: 14px; right: 14px; border-left:none; border-bottom:none; }
+
+  /* ===== HERO ===== */
+  .hero{
+    background: var(--navy);
+    color: var(--paper);
+    position: relative;
+    padding: 90px 48px 64px;
+    overflow: hidden;
+  }
+  .hero .corner{ border-color: rgba(242,239,230,0.35); }
+
+  .hero-eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--line-blue);
+    letter-spacing: 0.02em;
+    margin: 0 0 18px;
+  }
+
+  .hero h1{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 9vw, 6.2rem);
+    line-height: 0.92;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .hero .role{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+    color: var(--line-blue);
+    margin: 6px 0 34px;
+  }
+
+  .hero-meta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: rgba(242,239,230,0.75);
+    border-top: 1px solid rgba(242,239,230,0.2);
+    padding-top: 20px;
+    margin-top: 8px;
+  }
+  .hero-meta span{ display:block; }
+  .hero-meta small{
+    display:block;
+    color: var(--line-blue);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .tagline{
+    position: absolute;
+    right: 48px;
+    bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(242,239,230,0.55);
+    text-align: right;
+    max-width: 220px;
+  }
+
+  /* ===== SECTION SCAFFOLD ===== */
+  section{
+    padding: 56px 48px;
+    border-bottom: 1px solid var(--paper-dim);
+  }
+
+  .sec-head{
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 34px;
+  }
+  .sec-num{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--hazard);
+  }
+  .sec-head h2{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0;
+    flex: 1;
+  }
+  .sec-head::after{
+    content:"";
+    flex: 1;
+    height: 1px;
+    background: var(--line-blue-dim);
+    opacity: 0.35;
+    align-self: center;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 48px;
+  }
+  .about-grid p{ max-width: 62ch; margin: 0 0 18px; }
+  .about-grid p:last-child{ margin-bottom: 0; }
+
+  .stat-block{
+    border-left: 2px solid var(--line-blue-dim);
+    padding-left: 18px;
+    margin-bottom: 26px;
+  }
+  .stat-block .num{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    color: var(--hazard);
+    display: block;
+  }
+  .stat-block .label{
+    font-size: 13px;
+    color: var(--line-blue-dim);
+  }
+
+  /* ===== EXPERIENCE ===== */
+  .job{ margin-bottom: 44px; }
+  .job:last-child{ margin-bottom: 0; }
+  .job-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px dashed var(--line-blue-dim);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .job-head h3{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .job-head .dates{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--line-blue-dim);
+  }
+  .job-title{
+    font-size: 14px;
+    color: var(--hazard);
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  .job ul{
+    margin: 0;
+    padding-left: 20px;
+  }
+  .job li{ margin-bottom: 10px; max-width: 68ch; }
+  .job li:last-child{ margin-bottom: 0; }
+  .job .sub{
+    margin: 14px 0 14px 20px;
+    padding-left: 16px;
+    border-left: 2px solid var(--paper-dim);
+  }
+  .job .sub-title{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--line-blue-dim);
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  /* ===== SKILLS (spec sheet) ===== */
+  .spec-table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+  }
+  .spec-table tr{ border-bottom: 1px solid var(--paper-dim); }
+  .spec-table tr:last-child{ border-bottom: none; }
+  .spec-table td{ padding: 14px 8px; vertical-align: top; }
+  .spec-table td:first-child{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--hazard);
+    text-transform: uppercase;
+    width: 160px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ===== EDUCATION ===== */
+  .edu-card{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 28px;
+  }
+  .edu-degree h3{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 1.4rem;
+    margin: 0 0 4px;
+  }
+  .edu-degree .school{
+    font-size: 14px;
+    color: var(--line-blue-dim);
+    margin: 0 0 16px;
+  }
+  .coursework{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink);
+    opacity: 0.75;
+    line-height: 1.9;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact{
+    background: var(--navy);
+    color: var(--paper);
+  }
+  .contact .sec-head h2{ color: var(--paper); }
+  .contact .sec-head::after{ background: var(--line-blue-dim); }
+  .contact-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .btn{
+    display: inline-block;
+    padding: 14px 26px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--line-blue);
+    color: var(--paper);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover{ background: var(--line-blue); color: var(--navy-deep); }
+  .btn.primary{
+    background: var(--hazard);
+    border-color: var(--hazard);
+    color: var(--paper);
+  }
+  .btn.primary:hover{ background: var(--hazard-dim); border-color: var(--hazard-dim); color: var(--paper); }
+
+  /* ===== PROJECTS ===== */
+  .project-head{ margin-bottom: 14px; }
+  .project-head h3{
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+  .project-sub{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--line-blue-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
+  .project > p{ max-width: 68ch; margin: 0 0 22px; }
+
+  .spec-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 34px;
+  }
+  .spec-chip{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    border: 1px solid var(--line-blue-dim);
+    color: var(--line-blue-dim);
+    padding: 6px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .subhead{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--hazard);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px dashed var(--line-blue-dim);
+    padding-bottom: 8px;
+    margin: 36px 0 14px;
+  }
+  .subhead:first-of-type{ margin-top: 0; }
+
+  .photo-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .photo-grid figure{ margin: 0; }
+  .photo-grid img, .photo-grid video{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--paper-dim);
+    background: var(--navy-deep);
+  }
+  .photo-grid figcaption{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--line-blue-dim);
+    margin-top: 6px;
+  }
+  .photo-grid .wide{ grid-column: span 3; }
+  .photo-grid .wide img, .photo-grid .wide video{ height: 380px; }
+
+  @media (max-width: 720px){
+    .photo-grid{ grid-template-columns: 1fr 1fr; }
+    .photo-grid .wide{ grid-column: span 2; }
+    .photo-grid img, .photo-grid video{ height: 160px; }
+    .photo-grid .wide img, .photo-grid .wide video{ height: 220px; }
+  }
+
+  @media (max-width: 720px){
+    .hero{ padding: 70px 24px 56px; }
+    section{ padding: 44px 24px; }
+    .tagline{ position: static; margin-top: 24px; text-align: left; max-width: none; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .edu-card{ grid-template-columns: 1fr; }
+    .titleblock{ grid-template-columns: 1fr 1fr; }
+    .spec-table td:first-child{ width: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <p class="hero-eyebrow">JOSH SHERREITT / MECHANICAL ENGINEERING</p>
+    <h1>Josh<br>Sherreitt</h1>
+    <p class="role">Mechanical Engineer, Waterman and Outdoor Enthusiast</p>
+    <div class="hero-meta">
+      <span><small>Currently</small>Associate Mechanical Engineer, Empirical Systems Aerospace</span>
+      <span><small>Based in</small>San Luis Obispo, California</span>
+      <span><small>Education</small>B.S. Mechanical Engineering, Cal Poly SLO '25</span>
+    </div>
+    <p class="tagline">TCB: Take care of business.<br>Get it done.</p>
+  </header>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a mechanical engineer working on one-way attack UAS at Empirical Systems Aerospace. My scope runs from mechanical propulsion integration to control surfaces, wing deployment mechanisms, and composite structures. I like problems that start with an idea, a sketch, or a thought, but the part still has to fly.</p>
+        <p>Before this I designed pump and piping systems at Wallace Group Engineering, and before that I was chasing adventurous outlets to pay the bills: ocean lifeguard, speargun manufacturing technician, rock climbing gym employee. Each one taught me something about working under pressure and getting things right the first time. I also learned how to communicate. Technical ownership and explanation is nothing if you can't communicate it.</p>
+        <p>I grew up in Southern California, surfing, diving, building gas-powered scooters, and working at a local golf cart repair shop, which is probably why I gravitate toward building things that have to perform in the real world and not just on a screen. Cal Poly's learn-by-doing approach suited me. I put in over 200 hours in the machine shops on projects that had nothing to do with a grade.</p>
+        <p>I care about design for manufacturability. A part that's brilliant in CAD and impossible to build isn't a good design. Spinning a part in CAD forever when it's not the right design for the application is time wasted.</p>
+      </div>
+      <div>
+        <div class="stat-block">
+          <span class="num">45+</span>
+          <span class="label">LRIP vehicles built from a work-cell layout I designed</span>
+        </div>
+        <div class="stat-block">
+          <span class="num">17</span>
+          <span class="label">pump &amp; piping projects designed at Wallace Group</span>
+        </div>
+        <div class="stat-block">
+          <span class="num">200+</span>
+          <span class="label">hours in Cal Poly machine shops outside coursework</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Experience</h2></div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3>Empirical Systems Aerospace</h3>
+        <span class="dates">Jan 2026 to Current</span>
+      </div>
+      <p class="job-title">Associate Mechanical Engineer</p>
+      <ul>
+        <li>Own mechanical subsystem design, start to finish, for a one-way attack UAS: propulsion, BRU/captive carry integration, control surface actuation, wing deployment mechanisms, vehicle dynamics, and composite trim. Designed to MIL-STD for compatibility with existing military hardware.</li>
+      </ul>
+      <div class="sub">
+        <p class="sub-title">Lumberjack Program</p>
+        <ul>
+          <li>Led mechanical design, test, and integration of a drogue-chute recovery system, the first successful chute recovery for a belly-skid vehicle in company history, and new company IP.</li>
+          <li>Owned the technical scope end to end: vendor sourcing under NDA, sizing analysis, procurement, and testing. Presented across 3+ design reviews to Mission Assurance, Chief Engineers, and client leadership. All were approved.</li>
+          <li>Delivered the company's first BRU/captive-carry integration and an improved control surface integration for a new vehicle configuration, both critical to vehicle range and mission capability.</li>
+          <li>Owned propulsion integration end to end: mounting design, load analysis, material selection, and structural sizing, translating engine loads into the airframe interface.</li>
+        </ul>
+      </div>
+      <div class="sub">
+        <p class="sub-title">Classified Program</p>
+        <ul>
+          <li>Selected three weeks into the role as Build Manager: sole liaison between build engineers and Mechanical Design, resolving engineering blockers in real time to keep production on schedule.</li>
+          <li>Designed the 45+ vehicle LRIP work-cell layout, assembly flow, and Kanban system that structured the program's full-rate build.</li>
+          <li>Directly responsible for delivering the first 4 flight vehicles on time for testing, enabling the program's first flight, first mission flights, and first target hit.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3>Wallace Group Engineering</h3>
+        <span class="dates">Jul 2024 to Jan 2026</span>
+      </div>
+      <p class="job-title">Associate Mechanical Engineer (Jul 2025–Jan 2026) / Mechanical Engineering Intern (Jul 2024–Jul 2025)</p>
+      <ul>
+        <li>Designed and analyzed pump and piping systems across 17 projects for wineries and wastewater treatment plants, sizing for flow rates of 50–150 GPM across varying elevation and pressure differentials.</li>
+        <li>Authored 15 technical reports translating field data and client requirements into buildable mechanical designs.</li>
+        <li>Led design of a 5-header wastewater overflow system routing to a leachfield for a casino client, coordinating directly with subcontractors on implementation.</li>
+        <li>Progressed from supporting senior engineers on pump analysis to independently owning system design across the full project lifecycle.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Skills &amp; Programs</h2></div>
+    <table class="spec-table">
+      <tr><td>CAD</td><td>SolidWorks, AutoCAD</td></tr>
+      <tr><td>PDM</td><td>SolidWorks PDM</td></tr>
+      <tr><td>CNC</td><td>MasterCAM, HSMWorks</td></tr>
+      <tr><td>Coding</td><td>MATLAB, Python, G-code</td></tr>
+      <tr><td>Drafting</td><td>GD&amp;T per ASME Y14.5, engineering drawing creation and revision control</td></tr>
+      <tr><td>Approach</td><td>Design for Manufacturability (DFM), execution-first under tight timelines, direct coordination with machinists and technicians to close the design-to-build gap</td></tr>
+      <tr><td>Office</td><td>Word, Excel, Outlook</td></tr>
+    </table>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Education</h2></div>
+    <div class="edu-card">
+      <div class="edu-degree">
+        <h3>Cal Poly SLO</h3>
+        <p class="school">B.S. Mechanical Engineering, '25<br>Manufacturing Concentration</p>
+      </div>
+      <div class="coursework">
+        SolidWorks &amp; Detailed Design · Mechanical System Design · Vibrations · Fluid Dynamics · Thermodynamics · Heat Transfer · Thermal System Design · Computer-Aided Manufacturing · Manufacturing Processes &amp; Tooling · CNC Programming
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Projects</h2></div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Mechanical Espresso Tamp</h3>
+        <p class="project-sub">Personal project, design through machining</p>
+      </div>
+      <p>A lever-actuated espresso tamper I designed and built from scratch. Pulling the handle drives a toggle linkage that converts the angled pull into a straight, repeatable press on the portafilter, no wrist torque needed. Fully modeled in SolidWorks, hand-calculated for pivot loads, then machined out of 6061 aluminum on a manual mill and bandsaw.</p>
+
+      <div class="spec-row">
+        <span class="spec-chip">Mechanism: toggle linkage</span>
+        <span class="spec-chip">Material: 6061 aluminum, hardwood</span>
+        <span class="spec-chip">Tools: SolidWorks, HSMWorks, manual mill, bandsaw</span>
+      </div>
+
+      <p class="subhead">Design</p>
+      <p>I started with a free body diagram to size the linkage before committing to a shape in CAD. Working through the reaction forces at each pivot told me how much material I actually needed at the joints, instead of guessing and overbuilding. From there I modeled the full assembly in SolidWorks: a two-bar toggle that takes the angled force from the handle and drives the tamp straight down onto the portafilter, mounted to a wood upright.</p>
+      <div class="photo-grid">
+        <figure>
+          <img src="assets/projects/fbd-sketch.jpg" alt="Hand-drawn free body diagram of the linkage, showing reaction forces at each pivot">
+          <figcaption>Free body diagram, pivot reaction forces</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/cad-colored.jpg" alt="Colored SolidWorks assembly of the tamper showing each linkage component">
+          <figcaption>SolidWorks assembly, linkage colored by part</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/cad-portafilter.jpg" alt="SolidWorks render of the portafilter component">
+          <figcaption>Portafilter, modeled for fit</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/cad-fastener-detail.jpg" alt="Cutaway detail of the pivot fastener and mounting plate">
+          <figcaption>Pivot fastener detail, cutaway view</figcaption>
+        </figure>
+        <figure class="wide">
+          <video src="assets/projects/exploded-view.mp4" autoplay muted loop playsinline></video>
+          <figcaption>Exploded assembly view, animated in SolidWorks</figcaption>
+        </figure>
+      </div>
+
+      <p class="subhead">Machining</p>
+      <p>Every metal part started as bar stock. I cut blanks on the bandsaw, then moved to the manual mill to machine the pivot bosses, the yoke, and the tamp head. The decorative engraving on the tamp face was CAM-programmed in HSMWorks as a scallop toolpath before cutting. Machining it myself meant designing parts I could actually hold in a vise and cut with the tools on hand, not just what looked good in CAD.</p>
+      <div class="photo-grid">
+        <figure>
+          <img src="assets/projects/machining-bandsaw.jpg" alt="Bandsaw cutting an aluminum blank to length">
+          <figcaption>Cutting stock to length on the bandsaw</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/machining-mill.jpg" alt="Josh operating a manual Lagun milling machine">
+          <figcaption>Machining on the manual mill</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/machining-boss.jpg" alt="Close-up of the mill cutting a round pivot boss">
+          <figcaption>Milling a pivot boss</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/cam-toolpath.jpg" alt="HSMWorks CAM scallop toolpath programmed for the tamp face engraving">
+          <figcaption>CAM toolpath, HSMWorks scallop pass</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/machining-engraving.jpg" alt="CNC-engraved decorative pattern on the tamp face">
+          <figcaption>Engraving the tamp face</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/part-yoke.jpg" alt="Finished machined aluminum yoke part">
+          <figcaption>Finished yoke, machined from bar stock</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/part-pivot-blocks.jpg" alt="Three finished machined aluminum pivot blocks">
+          <figcaption>Pivot blocks, ready for assembly</figcaption>
+        </figure>
+      </div>
+
+      <p class="subhead">Final Build</p>
+      <p>The finished tamper mounts to a hardwood upright with a laser-engraved logo and holds a standard portafilter under the tamp head. Pulling the handle drives the linkage through its toggle point and presses straight down onto the grounds.</p>
+      <div class="photo-grid">
+        <figure>
+          <img src="assets/projects/final-full.jpg" alt="Finished lever tamper, full side view on wood base">
+          <figcaption>Finished assembly</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/projects/final-detail.jpg" alt="Close-up of the tamp head seated in the portafilter">
+          <figcaption>Tamp head seated in the portafilter</figcaption>
+        </figure>
+        <figure>
+          <video src="assets/projects/linkage-moving.mp4" autoplay muted loop playsinline></video>
+          <figcaption>Linkage in motion</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Contact</h2></div>
+    <p style="max-width: 52ch; color: rgba(242,239,230,0.8);">Open to hearing about roles in drone, defense, and DFM-focused engineering. Reach out directly or find me on LinkedIn.</p>
+    <div class="contact-row">
+      <a class="btn primary" href="mailto:jmsherreitt@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/josh-sherreitt-63985b222/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
+    </div>
+  </section>
+
+
+</div>
+
+</body>
+</html>
